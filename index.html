@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=yes" />
-    <title>💗 Untuk Cewek Tercinta 💗</title>
+    <title>💗 Untuk Rinjani 💗</title>
     <style>
         * {
             margin: 0;
@@ -33,7 +33,6 @@
             text-align: center;
         }
 
-        /* ----- PLAYER LAGU (AUTO PLAY) ----- */
         .music-player {
             background: rgba(255, 255, 255, 0.4);
             backdrop-filter: blur(4px);
@@ -71,7 +70,6 @@
             white-space: nowrap;
         }
 
-        /* ----- FOTO PROFIL (BESAR) ----- */
         .profile-ring {
             width: 280px;
             height: 280px;
@@ -99,7 +97,6 @@
             transition: 0.3s;
         }
 
-        /* ----- NAMA & SAPAAN ----- */
         .name {
             font-size: 2.2rem;
             font-weight: 700;
@@ -124,7 +121,6 @@
             box-shadow: 0 2px 8px rgba(255, 80, 120, 0.2);
         }
 
-        /* ----- INDIKATOR FOTO KE- BERAPA ----- */
         .photo-counter {
             font-size: 0.9rem;
             color: #7a0033;
@@ -137,7 +133,6 @@
             font-weight: 600;
         }
 
-        /* ----- TOMBOL NAVIGASI FOTO ----- */
         .nav-buttons {
             display: flex;
             justify-content: center;
@@ -176,7 +171,6 @@
             font-size: 1.2rem;
         }
 
-        /* ----- BIO / PERKENALAN ----- */
         .bio {
             background: rgba(255, 240, 245, 0.75);
             backdrop-filter: blur(4px);
@@ -213,7 +207,6 @@
             display: inline-block;
         }
 
-        /* ----- TOMBOL CINTA ----- */
         .love-btn {
             background: #ff4080;
             border: none;
@@ -244,7 +237,6 @@
             line-height: 1;
         }
 
-        /* ----- FOOTER ----- */
         .footer-note {
             margin-top: 22px;
             color: #6e0038;
@@ -257,7 +249,6 @@
             border: 1px solid #ffb3c9;
         }
 
-        /* ===== RESPONSIVE ===== */
         @media (max-width: 480px) {
             body {
                 padding: 10px 8px 30px;
@@ -361,10 +352,11 @@
         <!-- ===== PLAYER LAGU (AUTO PLAY) ===== -->
         <div class="music-player">
             <span class="music-label">🎵 Lagu Spesial</span>
-            <audio controls loop autoplay id="bgMusic">
+            <audio controls loop id="bgMusic">
                 <!-- GANTI src dengan link lagu kamu -->
+                <!-- PASTIKAN FILE nadin.mp3 ADA DI FOLDER YANG SAMA -->
                 <source src="nadin.mp3" type="audio/mpeg" />
-                
+                Browser kamu gak support audio :(
             </audio>
         </div>
 
@@ -395,16 +387,22 @@
         <div class="bio">
             <p>
                 <span class="heart-icon">🌸</span>
-                <strong>Hey pretty 🤍
-
-Just wanna say, makasih ya udah selalu ada. You make my days feel lighter without even trying. Kadang aku suka mikir, "kok bisa ya seberuntung ini?" 😭
-
-I know I'm not perfect, but I'll always try to be the best version of myself for you. You're my safe place, my favorite notification, my comfort person, and honestly... my home.
-
-Semoga kita bisa terus bareng, grow together, support each other, dan bikin banyak memories yang nantinya bakal kita ceritain sambil ketawa.
-
-I love you more than words can explain. Please stay with me ya? Let's make this love last, forever. 🤍🫶</strong>
+                <strong>Hey pretty 🤍</strong>
                 <span class="heart-icon">🌸</span>
+            </p>
+            <p>
+                Just wanna say, makasih ya udah selalu ada. You make my days feel lighter without even trying. Kadang aku suka mikir, "kok bisa ya seberuntung ini?" 😭
+            </p>
+            <p>
+                I know I'm not perfect, but I'll always try to be the best version of myself for you. You're my safe place, my favorite notification, my comfort person, and honestly... my home.
+            </p>
+            <p>
+                Semoga kita bisa terus bareng, grow together, support each other, dan bikin banyak memories yang nantinya bakal kita ceritain sambil ketawa.
+            </p>
+            <p style="text-align: center; margin-top: 6px;">
+                <span style="background: #ffd6e0; padding: 4px 18px; border-radius: 30px; display: inline-block; border:1px solid #ff7a9e;">
+                    🤍 I love you more than words can explain. Please stay with me ya? Let's make this love last, forever. 🤍🫶
+                </span>
             </p>
         </div>
 
@@ -424,16 +422,16 @@ I love you more than words can explain. Please stay with me ya? Let's make this 
             // 🔥 GANTI DAFTAR FOTO DI BAWAH INI DENGAN FOTO CEWEK KAMU 🔥
             // ============================================================
             const photoList = [
-    'ririn1.jpeg',   // foto 1
-    'ririn2.jpeg',   // foto 2
-    'ririn3.jpeg',   // foto 3
-    'ririn4.jpeg',   // foto 4
-    'ririn5.jpeg',   // foto 5
-    'ririn6.jpeg',   // foto 6
-    'ririn7.jpeg',   // foto 7
-    'ririn8.jpeg',   // foto 8
-    'ririn9.jpeg',   // foto 9
-    'ririn10.jpeg'   // foto 10
+                'ririn1.jpeg',
+                'ririn2.jpeg',
+                'ririn3.jpeg',
+                'ririn4.jpeg',
+                'ririn5.jpeg',
+                'ririn6.jpeg',
+                'ririn7.jpeg',
+                'ririn8.jpeg',
+                'ririn9.jpeg',
+                'ririn10.jpeg'
             ];
 
             let currentIndex = 0;
@@ -445,13 +443,30 @@ I love you more than words can explain. Please stay with me ya? Let's make this 
             const loveBtn = document.getElementById('loveButton');
             const audioPlayer = document.getElementById('bgMusic');
 
+            // ---- CEK APAKAH FILE FOTO ADA ----
+            function checkPhotoExists(url) {
+                const img = new Image();
+                img.onload = function() {
+                    console.log('Foto ditemukan:', url);
+                };
+                img.onerror = function() {
+                    console.warn('Foto TIDAK ditemukan:', url);
+                    // Tampilkan placeholder kalau foto gak ada
+                    if (profilePhoto.src === url) {
+                        profilePhoto.src = 'https://i.pravatar.cc/300?img=12';
+                    }
+                };
+                img.src = url;
+            }
+
             // ---- FUNGSI UPDATE FOTO ----
             function updatePhoto(index) {
                 if (index < 0) index = photoList.length - 1;
                 if (index >= photoList.length) index = 0;
                 currentIndex = index;
 
-                profilePhoto.src = photoList[currentIndex];
+                const photoUrl = photoList[currentIndex];
+                profilePhoto.src = photoUrl;
                 photoCounter.textContent = `📸 ${currentIndex + 1} / ${photoList.length}`;
 
                 // Efek transisi
@@ -462,30 +477,65 @@ I love you more than words can explain. Please stay with me ya? Let's make this 
                     profilePhoto.style.transform = 'scale(1)';
                     profilePhoto.style.opacity = '1';
                 }, 200);
+
+                // Cek apakah foto ada
+                checkPhotoExists(photoUrl);
             }
 
-            // ---- AUTO PLAY LAGU (handle kebijakan browser) ----
+            // ---- AUTO PLAY LAGU ----
             function playAudio() {
-                audioPlayer.play().catch(function(error) {
-                    console.log("Auto-play ditolak browser. Tunggu interaksi user.");
-                    loveBtn.addEventListener('click', function playOnce() {
-                        audioPlayer.play();
-                        loveBtn.removeEventListener('click', playOnce);
-                    }, { once: true });
-                });
+                // Coba play
+                const playPromise = audioPlayer.play();
+                
+                if (playPromise !== undefined) {
+                    playPromise.then(() => {
+                        console.log('Lagu berhasil diputar');
+                    }).catch(() => {
+                        console.log('Auto-play ditolak browser. Tunggu interaksi user.');
+                        // Buat tombol play manual kalau auto-play gagal
+                        showPlayButton();
+                    });
+                }
             }
 
-            // Coba play otomatis saat halaman load
+            // ---- TAMPILKAN TOMBOL PLAY MANUAL ----
+            function showPlayButton() {
+                const playerContainer = document.querySelector('.music-player');
+                const playBtn = document.createElement('button');
+                playBtn.innerHTML = '▶️ Play Lagu';
+                playBtn.style.cssText = `
+                    background: #ff4080;
+                    border: none;
+                    padding: 8px 20px;
+                    border-radius: 30px;
+                    font-size: 0.9rem;
+                    font-weight: 600;
+                    color: white;
+                    cursor: pointer;
+                    border: 2px solid #ff8eb5;
+                `;
+                playBtn.addEventListener('click', function() {
+                    audioPlayer.play();
+                    this.remove();
+                });
+                playerContainer.appendChild(playBtn);
+            }
+
+            // ---- LOAD ----
             window.addEventListener('load', function() {
-                playAudio();
+                // Coba play audio
+                setTimeout(playAudio, 100);
+                
                 // Set foto pertama
                 updatePhoto(0);
+                
+                // Cek semua foto
+                photoList.forEach(url => checkPhotoExists(url));
             });
 
             // ---- TOMBOL SEBELUMNYA ----
             prevBtn.addEventListener('click', function() {
                 updatePhoto(currentIndex - 1);
-                // Pastiin lagu jalan
                 if (audioPlayer.paused) {
                     audioPlayer.play().catch(() => {});
                 }
@@ -511,9 +561,8 @@ I love you more than words can explain. Please stay with me ya? Let's make this 
                 }
             });
 
-            // ---- TOMBOL CINTA (random foto + pesan) ----
+            // ---- TOMBOL CINTA ----
             loveBtn.addEventListener('click', function() {
-                // Pastiin lagu jalan (kalau belum)
                 if (audioPlayer.paused) {
                     audioPlayer.play().catch(() => {});
                 }
@@ -546,10 +595,9 @@ I love you more than words can explain. Please stay with me ya? Let's make this 
                 }, 200);
             });
 
-            // ---- GANTI JUDUL ----
-            document.title = '💗 Untuk RINJANI 💗';
+            document.title = '💗 Untuk Rinjani 💗';
         })();
     </script>
 
 </body>
-</html>
+</html> 
