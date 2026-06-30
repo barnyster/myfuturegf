@@ -1,0 +1,555 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=yes" />
+    <title>💗 Untuk Cewek Tercinta 💗</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            min-height: 100vh;
+            background: #fce4ec;
+            font-family: 'Segoe UI', 'Poppins', system-ui, sans-serif;
+            padding: 16px 12px 40px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .card {
+            max-width: 520px;
+            width: 100%;
+            background: linear-gradient(145deg, #ffd6e0, #ffb0c0);
+            background-color: #ffb3c6;
+            border-radius: 48px;
+            padding: 24px 18px 32px;
+            box-shadow: 0 20px 40px rgba(255, 50, 100, 0.3), 0 8px 16px rgba(200, 0, 70, 0.15);
+            border: 2px solid #ff8aaa;
+            text-align: center;
+        }
+
+        /* ----- PLAYER LAGU (AUTO PLAY) ----- */
+        .music-player {
+            background: rgba(255, 255, 255, 0.4);
+            backdrop-filter: blur(4px);
+            border-radius: 60px;
+            padding: 12px 18px;
+            margin-bottom: 18px;
+            border: 1px solid #ff8aaa;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 14px;
+            flex-wrap: wrap;
+        }
+
+        .music-player audio {
+            width: 100%;
+            max-width: 280px;
+            height: 40px;
+            border-radius: 30px;
+            outline: none;
+        }
+
+        .music-player audio::-webkit-media-controls-panel {
+            background: #ffd9e4;
+            border-radius: 30px;
+        }
+
+        .music-label {
+            font-size: 0.8rem;
+            font-weight: 600;
+            color: #7a0033;
+            background: #ffd9e4;
+            padding: 4px 14px;
+            border-radius: 30px;
+            white-space: nowrap;
+        }
+
+        /* ----- FOTO PROFIL (BESAR) ----- */
+        .profile-ring {
+            width: 280px;
+            height: 280px;
+            margin: 0 auto 14px;
+            border-radius: 50%;
+            padding: 8px;
+            background: radial-gradient(circle at 30% 30%, #ffb0c8, #ff6080);
+            box-shadow: 0 0 0 6px #ffd1dc, 0 16px 40px rgba(255, 60, 100, 0.4);
+            cursor: pointer;
+            transition: 0.2s;
+        }
+
+        .profile-ring:active {
+            transform: scale(0.95);
+        }
+
+        .profile-ring img {
+            width: 100%;
+            height: 100%;
+            border-radius: 50%;
+            border: 5px solid white;
+            object-fit: cover;
+            background: #ffb7c5;
+            display: block;
+            transition: 0.3s;
+        }
+
+        /* ----- NAMA & SAPAAN ----- */
+        .name {
+            font-size: 2.2rem;
+            font-weight: 700;
+            color: #6a002a;
+            letter-spacing: 2px;
+            text-shadow: 2px 2px 0 #ffb0c0;
+            margin-bottom: 2px;
+            word-break: break-word;
+        }
+
+        .sub-greeting {
+            font-size: 1rem;
+            font-weight: 500;
+            color: #8f1f44;
+            background: rgba(255, 255, 255, 0.6);
+            backdrop-filter: blur(3px);
+            display: inline-block;
+            padding: 5px 22px;
+            border-radius: 40px;
+            margin-bottom: 16px;
+            border: 1px solid #ff7a9e;
+            box-shadow: 0 2px 8px rgba(255, 80, 120, 0.2);
+        }
+
+        /* ----- INDIKATOR FOTO KE- BERAPA ----- */
+        .photo-counter {
+            font-size: 0.9rem;
+            color: #7a0033;
+            background: rgba(255, 255, 255, 0.5);
+            padding: 4px 16px;
+            border-radius: 30px;
+            display: inline-block;
+            margin-bottom: 12px;
+            border: 1px solid #ff8aaa;
+            font-weight: 600;
+        }
+
+        /* ----- TOMBOL NAVIGASI FOTO ----- */
+        .nav-buttons {
+            display: flex;
+            justify-content: center;
+            gap: 16px;
+            margin: 12px 0 18px;
+            flex-wrap: wrap;
+        }
+
+        .nav-btn {
+            background: #ff4080;
+            border: none;
+            padding: 12px 28px;
+            border-radius: 40px;
+            font-size: 1rem;
+            font-weight: 700;
+            color: white;
+            cursor: pointer;
+            transition: 0.15s;
+            border: 2px solid #ff8eb5;
+            box-shadow: 0 4px 0 #9f0040, 0 4px 12px rgba(255, 0, 80, 0.3);
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .nav-btn:active {
+            transform: translateY(4px);
+            box-shadow: 0 1px 0 #9f0040;
+        }
+
+        .nav-btn:hover {
+            background: #ff1f6a;
+        }
+
+        .nav-btn span {
+            font-size: 1.2rem;
+        }
+
+        /* ----- BIO / PERKENALAN ----- */
+        .bio {
+            background: rgba(255, 240, 245, 0.75);
+            backdrop-filter: blur(4px);
+            border-radius: 40px;
+            padding: 18px 18px;
+            margin: 12px 0 18px;
+            border: 1px solid #ff99b5;
+            box-shadow: inset 0 2px 8px rgba(255, 180, 200, 0.3);
+            color: #4d0024;
+            font-size: 0.95rem;
+            line-height: 1.7;
+            text-align: left;
+        }
+
+        .bio p {
+            margin-bottom: 10px;
+        }
+        .bio p:last-child {
+            margin-bottom: 0;
+        }
+
+        .bio .heart-icon {
+            color: #d6004c;
+            font-size: 1.1rem;
+            margin: 0 4px;
+        }
+        .bio strong {
+            color: #a8003a;
+        }
+        .bio .highlight-pink {
+            background: #ffd9e4;
+            padding: 2px 12px;
+            border-radius: 20px;
+            display: inline-block;
+        }
+
+        /* ----- TOMBOL CINTA ----- */
+        .love-btn {
+            background: #ff4080;
+            border: none;
+            padding: 14px 28px;
+            border-radius: 60px;
+            font-size: 1.1rem;
+            font-weight: 700;
+            color: white;
+            letter-spacing: 0.5px;
+            box-shadow: 0 8px 0 #9f0040, 0 8px 24px rgba(255, 0, 80, 0.4);
+            transition: all 0.08s ease;
+            cursor: pointer;
+            border: 2px solid #ff8eb5;
+            width: fit-content;
+            margin: 4px auto 0;
+            display: inline-flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .love-btn:active {
+            transform: translateY(6px);
+            box-shadow: 0 2px 0 #9f0040;
+        }
+
+        .love-btn span {
+            font-size: 1.4rem;
+            line-height: 1;
+        }
+
+        /* ----- FOOTER ----- */
+        .footer-note {
+            margin-top: 22px;
+            color: #6e0038;
+            font-size: 0.85rem;
+            background: rgba(255, 220, 230, 0.5);
+            padding: 6px 18px;
+            border-radius: 40px;
+            display: inline-block;
+            backdrop-filter: blur(2px);
+            border: 1px solid #ffb3c9;
+        }
+
+        /* ===== RESPONSIVE ===== */
+        @media (max-width: 480px) {
+            body {
+                padding: 10px 8px 30px;
+            }
+            .card {
+                padding: 18px 12px 24px;
+                border-radius: 36px;
+            }
+            .profile-ring {
+                width: 220px;
+                height: 220px;
+                padding: 6px;
+            }
+            .profile-ring img {
+                border-width: 4px;
+            }
+            .name {
+                font-size: 1.9rem;
+            }
+            .sub-greeting {
+                font-size: 0.9rem;
+                padding: 4px 18px;
+            }
+            .bio {
+                font-size: 0.9rem;
+                padding: 14px;
+            }
+            .love-btn {
+                font-size: 1rem;
+                padding: 12px 20px;
+                gap: 10px;
+            }
+            .love-btn span {
+                font-size: 1.2rem;
+            }
+            .nav-btn {
+                padding: 10px 20px;
+                font-size: 0.9rem;
+            }
+            .music-player audio {
+                max-width: 200px;
+            }
+            .music-player {
+                padding: 10px 14px;
+                gap: 10px;
+            }
+            .photo-counter {
+                font-size: 0.8rem;
+                padding: 3px 14px;
+            }
+        }
+
+        @media (max-width: 380px) {
+            .profile-ring {
+                width: 180px;
+                height: 180px;
+            }
+            .name {
+                font-size: 1.6rem;
+            }
+            .music-player audio {
+                max-width: 160px;
+            }
+            .nav-btn {
+                padding: 8px 16px;
+                font-size: 0.8rem;
+            }
+        }
+
+        @media (orientation: landscape) and (max-height: 500px) {
+            .card {
+                max-width: 480px;
+                padding: 16px 16px 20px;
+            }
+            .profile-ring {
+                width: 150px;
+                height: 150px;
+                padding: 5px;
+            }
+            .profile-ring img {
+                border-width: 3px;
+            }
+            .bio {
+                font-size: 0.85rem;
+                padding: 12px;
+            }
+            .name {
+                font-size: 1.7rem;
+            }
+            .nav-btn {
+                padding: 8px 16px;
+                font-size: 0.8rem;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="card">
+
+        <!-- ===== PLAYER LAGU (AUTO PLAY) ===== -->
+        <div class="music-player">
+            <span class="music-label">🎵 Lagu Spesial</span>
+            <audio controls loop autoplay id="bgMusic">
+                <!-- GANTI src dengan link lagu kamu -->
+                <source src="nadin.mp3" type="audio/mpeg" />
+                
+            </audio>
+        </div>
+
+        <!-- ===== FOTO PROFIL (BESAR) ===== -->
+        <div class="profile-ring" id="profileRing">
+            <!-- GANTI src dengan foto profil cewek kamu -->
+            <img src="ririn1.jpeg" alt="foto cewek ku" id="profilePhoto" />
+        </div>
+
+        <!-- ===== INDIKATOR FOTO ===== -->
+        <div class="photo-counter" id="photoCounter">📸 1 / 10</div>
+
+        <!-- ===== TOMBOL NAVIGASI ===== -->
+        <div class="nav-buttons">
+            <button class="nav-btn" id="prevBtn">
+                <span>◀</span> Sebelumnya
+            </button>
+            <button class="nav-btn" id="nextBtn">
+                Selanjutnya <span>▶</span>
+            </button>
+        </div>
+
+        <!-- ===== NAMA & SAPAAN ===== -->
+        <div class="name">💗 RINJANI 💗</div>
+        <div class="sub-greeting">🌷 untuk cewekku tersayang 🌷</div>
+
+        <!-- ===== PERKENALAN ===== -->
+        <div class="bio">
+            <p>
+                <span class="heart-icon">🌸</span>
+                <strong>Hey pretty 🤍
+
+Just wanna say, makasih ya udah selalu ada. You make my days feel lighter without even trying. Kadang aku suka mikir, "kok bisa ya seberuntung ini?" 😭
+
+I know I'm not perfect, but I'll always try to be the best version of myself for you. You're my safe place, my favorite notification, my comfort person, and honestly... my home.
+
+Semoga kita bisa terus bareng, grow together, support each other, dan bikin banyak memories yang nantinya bakal kita ceritain sambil ketawa.
+
+I love you more than words can explain. Please stay with me ya? Let's make this love last, forever. 🤍🫶</strong>
+                <span class="heart-icon">🌸</span>
+            </p>
+        </div>
+
+        <!-- ===== TOMBOL CINTA ===== -->
+        <button class="love-btn" id="loveButton">
+            <span>❤️</span> Klik buat Kamu <span>❤️</span>
+        </button>
+
+        <div class="footer-note">
+            🌷 dari aku, untuk kamu, selamanya 🌷
+        </div>
+    </div>
+
+    <script>
+        (function() {
+            // ============================================================
+            // 🔥 GANTI DAFTAR FOTO DI BAWAH INI DENGAN FOTO CEWEK KAMU 🔥
+            // ============================================================
+            const photoList = [
+    'ririn1.jpeg',   // foto 1
+    'ririn2.jpeg',   // foto 2
+    'ririn3.jpeg',   // foto 3
+    'ririn4.jpeg',   // foto 4
+    'ririn5.jpeg',   // foto 5
+    'ririn6.jpeg',   // foto 6
+    'ririn7.jpeg',   // foto 7
+    'ririn8.jpeg',   // foto 8
+    'ririn9.jpeg',   // foto 9
+    'ririn10.jpeg'   // foto 10
+            ];
+
+            let currentIndex = 0;
+            const profilePhoto = document.getElementById('profilePhoto');
+            const profileRing = document.getElementById('profileRing');
+            const photoCounter = document.getElementById('photoCounter');
+            const prevBtn = document.getElementById('prevBtn');
+            const nextBtn = document.getElementById('nextBtn');
+            const loveBtn = document.getElementById('loveButton');
+            const audioPlayer = document.getElementById('bgMusic');
+
+            // ---- FUNGSI UPDATE FOTO ----
+            function updatePhoto(index) {
+                if (index < 0) index = photoList.length - 1;
+                if (index >= photoList.length) index = 0;
+                currentIndex = index;
+
+                profilePhoto.src = photoList[currentIndex];
+                photoCounter.textContent = `📸 ${currentIndex + 1} / ${photoList.length}`;
+
+                // Efek transisi
+                profilePhoto.style.transition = 'transform 0.25s ease, opacity 0.25s';
+                profilePhoto.style.transform = 'scale(0.85)';
+                profilePhoto.style.opacity = '0.7';
+                setTimeout(() => {
+                    profilePhoto.style.transform = 'scale(1)';
+                    profilePhoto.style.opacity = '1';
+                }, 200);
+            }
+
+            // ---- AUTO PLAY LAGU (handle kebijakan browser) ----
+            function playAudio() {
+                audioPlayer.play().catch(function(error) {
+                    console.log("Auto-play ditolak browser. Tunggu interaksi user.");
+                    loveBtn.addEventListener('click', function playOnce() {
+                        audioPlayer.play();
+                        loveBtn.removeEventListener('click', playOnce);
+                    }, { once: true });
+                });
+            }
+
+            // Coba play otomatis saat halaman load
+            window.addEventListener('load', function() {
+                playAudio();
+                // Set foto pertama
+                updatePhoto(0);
+            });
+
+            // ---- TOMBOL SEBELUMNYA ----
+            prevBtn.addEventListener('click', function() {
+                updatePhoto(currentIndex - 1);
+                // Pastiin lagu jalan
+                if (audioPlayer.paused) {
+                    audioPlayer.play().catch(() => {});
+                }
+            });
+
+            // ---- TOMBOL SELANJUTNYA ----
+            nextBtn.addEventListener('click', function() {
+                updatePhoto(currentIndex + 1);
+                if (audioPlayer.paused) {
+                    audioPlayer.play().catch(() => {});
+                }
+            });
+
+            // ---- KLIK FOTO PROFIL (random) ----
+            profileRing.addEventListener('click', function() {
+                let randomIdx;
+                do {
+                    randomIdx = Math.floor(Math.random() * photoList.length);
+                } while (randomIdx === currentIndex && photoList.length > 1);
+                updatePhoto(randomIdx);
+                if (audioPlayer.paused) {
+                    audioPlayer.play().catch(() => {});
+                }
+            });
+
+            // ---- TOMBOL CINTA (random foto + pesan) ----
+            loveBtn.addEventListener('click', function() {
+                // Pastiin lagu jalan (kalau belum)
+                if (audioPlayer.paused) {
+                    audioPlayer.play().catch(() => {});
+                }
+
+                let randomIdx;
+                do {
+                    randomIdx = Math.floor(Math.random() * photoList.length);
+                } while (randomIdx === currentIndex && photoList.length > 1);
+                updatePhoto(randomIdx);
+
+                const messages = [
+                    '💕 Kamu Cantik! 💕',
+                    '✨ Senyummu Manis ✨',
+                    '🌸 Aku Suka Kamu 🌸',
+                    '💗 Sayang Banget 💗',
+                    '🌹 Cewekku Paling 🌹',
+                    '💖 You Are My World 💖',
+                    '🌟 Kamu Istimewa 🌟',
+                    '🌷 Love You Always 🌷'
+                ];
+                const randomMsg = messages[Math.floor(Math.random() * messages.length)];
+                loveBtn.innerHTML = `<span>💘</span> ${randomMsg} <span>💘</span>`;
+                setTimeout(() => {
+                    loveBtn.innerHTML = `<span>❤️</span> Klik buat Kamu <span>❤️</span>`;
+                }, 1500);
+
+                loveBtn.style.background = '#ff1f6a';
+                setTimeout(() => {
+                    loveBtn.style.background = '#ff4080';
+                }, 200);
+            });
+
+            // ---- GANTI JUDUL ----
+            document.title = '💗 Untuk RINJANI 💗';
+        })();
+    </script>
+
+</body>
+</html>
